@@ -12,6 +12,7 @@ Scene::Scene(QObject* parent): QGraphicsScene(parent)
     this->addItem(ejeX);
     this->addItem(ejeY);
     finalizar = true;
+    //prueba para git
 }
 
 void Scene::setMode(Mode mode)
