@@ -26,10 +26,15 @@ void MainWindow::createActions(){
     lineAction->setIcon(QIcon(":/icons/line.png"));
     lineAction->setCheckable(true);
 
-    circleAction = new QAction("Draw circle", this);
-    circleAction->setData(int(Scene::DrawCircle));
-    circleAction->setIcon(QIcon(":/icons/circle.png"));
-    circleAction->setCheckable(true);
+    circleRadiusAction = new QAction("Draw circle by radius", this);
+    circleRadiusAction->setData(int(Scene::DrawRadiusCircle));
+    circleRadiusAction->setIcon(QIcon(":/icons/circle.png"));
+    circleRadiusAction->setCheckable(true);
+
+    circleDiameterAction = new QAction("Draw circle by diameter", this);
+    circleDiameterAction->setData(int(Scene::DrawDiameterCircle));
+    circleDiameterAction->setIcon(QIcon(":/icons/circle_diameter.png"));
+    circleDiameterAction->setCheckable(true);
 
     selectAction = new QAction("Select object", this);
     selectAction->setData(int(Scene::SelectObject));
@@ -39,7 +44,8 @@ void MainWindow::createActions(){
     actionGroup = new QActionGroup(this);
     actionGroup->setExclusive(true);
     actionGroup->addAction(lineAction);
-    actionGroup->addAction(circleAction);
+    actionGroup->addAction(circleRadiusAction);
+    actionGroup->addAction(circleDiameterAction);
     actionGroup->addAction(selectAction);
 }
 
@@ -57,5 +63,6 @@ void MainWindow::createToolBar(){
     addToolBar(Qt::TopToolBarArea, drawingToolBar);
     drawingToolBar->addAction(selectAction);
     drawingToolBar->addAction(lineAction);
-    drawingToolBar->addAction(circleAction);
+    drawingToolBar->addAction(circleRadiusAction);
+    drawingToolBar->addAction(circleDiameterAction);
 }
