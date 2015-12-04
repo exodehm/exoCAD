@@ -80,21 +80,45 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             lineToDraw->setPos(origPoint);
         }
     }
-    else if (sceneMode == DrawCircle)
+    else if (sceneMode == DrawRadiusCircle)
     {
         if(!circleToDraw)
         {
             origCircle = event->scenePos();
             circleToDraw = new QGraphicsEllipseItem;
+            RadiusLine = new QGraphicsLineItem;
+            this->addItem(RadiusLine);
+            RadiusLine->setPen(QPen(Qt::white, 2, Qt::SolidLine));
+            RadiusLine->setPos(origCircle);
             this->addItem(circleToDraw);
             circleToDraw->setPen(QPen(Qt::white, 3, Qt::SolidLine));            
         }
         else
         {
             circleToDraw = nullptr;
-
+            RadiusLine = nullptr;
         }
         origCircle = event->scenePos();
+    }
+    else if (sceneMode==DrawDiameterCircle)
+    {
+        if (!circleToDraw)
+        {
+            D1 = event->scenePos();
+            circleToDraw = new QGraphicsEllipseItem;
+            DiameterLine = new QGraphicsLineItem;
+            this->addItem(DiameterLine);
+            DiameterLine->setPen(QPen(Qt::white, 2, Qt::SolidLine));
+            DiameterLine->setPos(D1);
+            this->addItem(circleToDraw);
+            circleToDraw->setPen(QPen(Qt::white, 3, Qt::SolidLine));
+        }
+        else
+        {
+            circleToDraw = nullptr;
+            DiameterLine = nullptr;
+        }
+        D1 = event->scenePos();
     }
     else
         QGraphicsScene::mousePressEvent(event);
@@ -113,22 +137,30 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                                 event->scenePos().y() - origPoint.y());
         }
     }
-    else if(sceneMode == DrawCircle)
+    else if(sceneMode == DrawRadiusCircle)
     {
         if (circleToDraw)
         {
             qreal IncrementoX, IncrementoY;
+            qreal radio;
             IncrementoX=event->scenePos().x()-origCircle.x();
             IncrementoY=event->scenePos().y()-origCircle.y();
-            if (IncrementoX>IncrementoY)
-            {
-                IncrementoY=IncrementoX;
-            }
-            else
-            {
-                IncrementoX=IncrementoY;
-            }
-            circleToDraw->setRect(origCircle.x()-IncrementoX, origCircle.y()-IncrementoY, IncrementoX*2, IncrementoY*2);
+            radio = sqrt(pow(IncrementoX,2)+pow(IncrementoY,2));
+            qreal diametro = radio*2;
+            circleToDraw->setRect(origCircle.x()-radio, origCircle.y()-radio, diametro,diametro);
+            RadiusLine->setLine(0,0, IncrementoX,IncrementoY);
+        }
+    }
+    else if(sceneMode == DrawDiameterCircle)
+    {
+        if (circleToDraw)
+        {
+            qreal IncrementoX=event->scenePos().x()-D1.x();
+            qreal IncrementoY=event->scenePos().y()-D1.y();
+            qreal radio = sqrt(pow(IncrementoX,2)+pow(IncrementoY,2))/2;
+            QPointF centro((D1.x()+IncrementoX/2),(D1.y()+IncrementoY/2));
+            circleToDraw->setRect(centro.x()-radio,centro.y()-radio, radio*2,radio*2);
+            DiameterLine->setLine(0,0, IncrementoX,IncrementoY);
         }
     }
         else
@@ -153,7 +185,7 @@ void Scene::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
             lineToDraw=nullptr;
         }*/
     }
-    else if (sceneMode == DrawCircle)
+    else if (sceneMode == DrawRadiusCircle)
     {
 
     }
