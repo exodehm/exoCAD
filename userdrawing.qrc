@@ -3,6 +3,9 @@
         <file>icons/select.png</file>
         <file>icons/line.png</file>
         <file>icons/circle.png</file>
+<<<<<<< HEAD
         <file>icons/circle_diameter.png</file>
+=======
+>>>>>>> 2b12c4d349640d3c34ee8e8cff6825adc3abf696
     </qresource>
 </RCC>
