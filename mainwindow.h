@@ -23,7 +23,8 @@ private:
     void createToolBar();
 
     QAction* lineAction;
-    QAction* circleAction;
+    QAction* circleRadiusAction;
+    QAction* circleDiameterAction;
     QAction* selectAction;
     QActionGroup *actionGroup;
     QToolBar* drawingToolBar;
