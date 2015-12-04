@@ -15,7 +15,7 @@
 class Scene : public QGraphicsScene
 {
 public:
-    enum Mode {NoMode, SelectObject, DrawLine, DrawCircle};
+    enum Mode {NoMode, SelectObject, DrawLine, DrawRadiusCircle, DrawDiameterCircle};
     Scene(QObject* parent = 0);
     void setMode(Mode mode);
     void setCursor();
@@ -28,7 +28,10 @@ private:
     Mode sceneMode;
     QPointF origPoint;
     QPointF origCircle;
+    QPointF D1;
     QGraphicsLineItem* lineToDraw;
+    QGraphicsLineItem* DiameterLine;
+    QGraphicsLineItem* RadiusLine;
     QGraphicsEllipseItem* circleToDraw;    
     void makeItemsControllable(bool areControllable);
     QGraphicsLineItem* ejeX;
