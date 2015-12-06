@@ -11,7 +11,7 @@ Scene::Scene(QObject* parent): QGraphicsScene(parent)
     ejeY->setPen(QPen(Qt::white, 1, Qt::SolidLine));
     this->addItem(ejeX);
     this->addItem(ejeY);
-    finalizar = true;
+    segundopunto = false;
     //prueba para git
 }
 
@@ -89,7 +89,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             circleToDraw = new QGraphicsEllipseItem;
             RadiusLine = new QGraphicsLineItem;
             this->addItem(RadiusLine);
-            RadiusLine->setPen(QPen(Qt::white, 2, Qt::SolidLine));
+            RadiusLine->setPen(QPen(Qt::gray, 1, Qt::DashLine));
             RadiusLine->setPos(origCircle);
             this->addItem(circleToDraw);
             circleToDraw->setPen(QPen(Qt::white, 3, Qt::SolidLine));            
@@ -109,7 +109,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             circleToDraw = new QGraphicsEllipseItem;
             DiameterLine = new QGraphicsLineItem;
             this->addItem(DiameterLine);
-            DiameterLine->setPen(QPen(Qt::white, 2, Qt::SolidLine));
+            DiameterLine->setPen(QPen(Qt::gray, 1, Qt::DashLine));
             DiameterLine->setPos(D1);
             this->addItem(circleToDraw);
             circleToDraw->setPen(QPen(Qt::white, 3, Qt::SolidLine));
@@ -120,6 +120,48 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             DiameterLine = nullptr;
         }
         D1 = event->scenePos();
+    }
+    else if (sceneMode==Draw3PointsCircle)
+    {
+        if (!circleToDraw)
+        {
+            if (!segundopunto)
+            {
+                P1 = event->scenePos();
+                segundopunto=true;
+                qDebug()<<"Punto P1: X= "<<P1.x()<<"Y= "<<P1.y();
+            }
+            else
+            {
+                P2 = event->scenePos();                
+                qDebug()<<"Punto P2: X= "<<P2.x()<<"Y= "<<P2.y();
+                circleToDraw = new QGraphicsEllipseItem;
+                ABLine = new QGraphicsLineItem;
+                BCLine = new QGraphicsLineItem;
+                ACLine = new QGraphicsLineItem;
+
+                ABLine->setPen(QPen(Qt::gray, 1, Qt::DashLine));
+                BCLine->setPen(QPen(Qt::gray, 1, Qt::DashLine));
+                ACLine->setPen(QPen(Qt::gray, 1, Qt::DashLine));
+
+                this->addItem(ABLine);
+                this->addItem(BCLine);
+                this->addItem(ACLine);
+
+                ABLine->setLine(P1.x(),P1.y(),P2.x(),P2.y());
+                PerpAB=ABLine->line().normalVector();
+                PerpAB.translate((P2.x()-P1.x())/2,(P2.y()-P1.y())/2);
+                this->addItem(circleToDraw);
+                circleToDraw->setPen(QPen(Qt::white, 3, Qt::SolidLine));
+            }
+        }
+        else
+        {
+            circleToDraw = nullptr;
+            DiameterLine = nullptr;
+            segundopunto = false;
+        }
+        //D1 = event->scenePos();
     }
     else
         QGraphicsScene::mousePressEvent(event);
@@ -162,6 +204,24 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             QPointF centro((D1.x()+IncrementoX/2),(D1.y()+IncrementoY/2));
             circleToDraw->setRect(centro.x()-radio,centro.y()-radio, radio*2,radio*2);
             DiameterLine->setLine(0,0, IncrementoX,IncrementoY);
+        }
+    }
+    else if(sceneMode == Draw3PointsCircle)
+    {
+        if (circleToDraw)
+        {
+            ACLine->setLine(P1.x(),P1.y(),event->scenePos().x(),event->scenePos().y());
+            BCLine->setLine(P2.x(),P2.y(),event->scenePos().x(),event->scenePos().y());
+            PerpAC=ACLine->line().normalVector();
+            PerpAC.translate((event->scenePos().x()-P1.x())/2,(event->scenePos().y()-P1.y())/2);
+
+            QPointF* pIntersectionPoint= new QPointF;
+            int tipointerseccion = PerpAB.intersect(PerpAC, pIntersectionPoint);
+            if (tipointerseccion==1 || tipointerseccion==2)
+            {
+                qreal radio = sqrt(pow(pIntersectionPoint->x()-P1.x(),2)+pow(pIntersectionPoint->y()-P1.y(),2));
+                circleToDraw->setRect(pIntersectionPoint->x()-radio,pIntersectionPoint->y()-radio,radio*2,radio*2);
+            }
         }
     }
         else

@@ -2,7 +2,8 @@
     <qresource prefix="/">
         <file>icons/select.png</file>
         <file>icons/line.png</file>
-        <file>icons/circle.png</file>
+        <file>icons/circle_radius.png</file>
         <file>icons/circle_diameter.png</file>
+	<file>icons/circle_3_points.png</file>
     </qresource>
 </RCC>

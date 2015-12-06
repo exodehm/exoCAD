@@ -15,7 +15,7 @@
 class Scene : public QGraphicsScene
 {
 public:
-    enum Mode {NoMode, SelectObject, DrawLine, DrawRadiusCircle, DrawDiameterCircle};
+    enum Mode {NoMode, SelectObject, DrawLine, DrawRadiusCircle, DrawDiameterCircle, Draw3PointsCircle};
     Scene(QObject* parent = 0);
     void setMode(Mode mode);
     void setCursor();
@@ -29,14 +29,20 @@ private:
     QPointF origPoint;
     QPointF origCircle;
     QPointF D1;
+    QPointF P1,P2;
     QGraphicsLineItem* lineToDraw;
     QGraphicsLineItem* DiameterLine;
     QGraphicsLineItem* RadiusLine;
+    QGraphicsLineItem* ABLine;
+    QGraphicsLineItem* BCLine;
+    QGraphicsLineItem* ACLine;
+    QLineF PerpAB;
+    QLineF PerpAC;
     QGraphicsEllipseItem* circleToDraw;    
     void makeItemsControllable(bool areControllable);
     QGraphicsLineItem* ejeX;
     QGraphicsLineItem* ejeY;
-    bool finalizar;
+    bool segundopunto;
 };
 
 #endif // SCENE_H

@@ -25,6 +25,7 @@ private:
     QAction* lineAction;
     QAction* circleRadiusAction;
     QAction* circleDiameterAction;
+    QAction* circle3PointsAction;
     QAction* selectAction;
     QActionGroup *actionGroup;
     QToolBar* drawingToolBar;
