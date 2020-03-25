@@ -12,9 +12,12 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 public:
     MainWindow();
+    void resizeEvent(QResizeEvent *e);
 public slots:
     void actionGroupClicked(QAction*);
 private:
+    qreal WindowWidth;
+    qreal WindowHeight;
     QGraphicsView* view;
     Scene* scene;
 
@@ -23,6 +26,9 @@ private:
     void createToolBar();
 
     QAction* lineAction;
+    QAction* rectAction;
+    QAction* rect3PointsAction;
+    QAction* ellipseAction;
     QAction* circleRadiusAction;
     QAction* circleDiameterAction;
     QAction* circle3PointsAction;
