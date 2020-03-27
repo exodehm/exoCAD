@@ -13,16 +13,10 @@
 #include <QDebug>
 
 #include "cursor.h"
-<<<<<<< HEAD
-<<<<<<< HEAD
 //#include "circle.h"
 #include "exoradiuscircle.h"
-=======
 #include "circle.h"
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
-=======
 #include "circle.h"
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
 
 
 class Scene : public QGraphicsScene
@@ -46,20 +40,14 @@ protected:
 private:
     Mode sceneMode;
     QPointF origPoint;
+    QPointF origCircle;
     QPointF D1;
     QPointF P1,P2;
     QGraphicsLineItem* lineToDraw;
     QGraphicsRectItem* rectToDraw;
     QGraphicsRectItem* rectForEllipse;
-<<<<<<< HEAD
-<<<<<<< HEAD
     QGraphicsLineItem* DiameterLine;    
-=======
-=======
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
-    QGraphicsLineItem* DiameterLine;
     QGraphicsLineItem* RadiusLine;
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     QGraphicsLineItem* ABLine;
     QGraphicsLineItem* BCLine;
     QGraphicsLineItem* ACLine;
@@ -67,13 +55,7 @@ private:
     QLineF PerpAC;
     QGraphicsEllipseItem* circleToDraw;
     QGraphicsEllipseItem* ellipseToDraw;
-<<<<<<< HEAD
-<<<<<<< HEAD
     EXORadiusCircle* mycircle;
-=======
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
-=======
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     void makeItemsControllable(bool areControllable);
     Cursor* Cruceta;
     bool primerpunto;

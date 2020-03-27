@@ -1,4 +1,5 @@
 #include "scene.h"
+#include <QDebug>
 
 
 Scene::Scene(QObject* parent): QGraphicsScene(parent), gridSize(20){}
@@ -11,22 +12,16 @@ Scene::Scene(const QRectF & sceneRect, QObject * parent) : QGraphicsScene(parent
     rectToDraw = nullptr;
     rectForEllipse=nullptr;
     circleToDraw = nullptr;
-<<<<<<< HEAD
-<<<<<<< HEAD
     mycircle = nullptr;
     ellipseToDraw = nullptr;
     //Cruceta =  new Cursor(sceneRect);
     //this->addItem(Cruceta);
-=======
     ellipseToDraw = nullptr;
     Cruceta =  new Cursor(sceneRect);
     this->addItem(Cruceta);
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
-=======
     ellipseToDraw = nullptr;
     Cruceta =  new Cursor(sceneRect);
     this->addItem(Cruceta);
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     primerpunto =  false;
     segundopunto = false;
     tercerpunto = false;
@@ -46,29 +41,13 @@ void Scene::setMode(Mode mode)
     {
         makeItemsControllable(true);
         vMode = QGraphicsView::RubberBandDrag;
-<<<<<<< HEAD
-<<<<<<< HEAD
-        //Cruceta->setMode(false);
-=======
         Cruceta->setMode(false);
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
-=======
-        Cruceta->setMode(false);
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     }
     else
     {
         makeItemsControllable(false);
         vMode = QGraphicsView::NoDrag;
-<<<<<<< HEAD
-<<<<<<< HEAD
-        //Cruceta->setMode(true);
-=======
         Cruceta->setMode(true);
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
-=======
-        Cruceta->setMode(true);
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     }
 
     QGraphicsView* mView = this->views().at(0);
@@ -123,17 +102,6 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
     case DrawRect:
 
         if (!rectToDraw)
-<<<<<<< HEAD
-<<<<<<< HEAD
-        {
-            origPoint = event->scenePos();
-            rectToDraw = new QGraphicsRectItem;
-            this->addItem(rectToDraw);
-            rectToDraw->setPen(QPen(Qt::white, 2, Qt::SolidLine));
-            rectToDraw->setPos(origPoint);
-=======
-=======
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
         {
             origPoint = event->scenePos();
             rectToDraw = new QGraphicsRectItem;
@@ -148,12 +116,12 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         }
         break;
 
-    case Draw3PointsRect:
+    /*case Draw3PointsRect:
         if (!rectToDraw)
         {
             if (!primerpunto && !segundopunto)
             {
-                primerpunto=true;                
+                primerpunto=true;
                 P1 = event->scenePos();
                 ABLine = new QGraphicsLineItem;
                 ABLine->setPen(QPen(Qt::gray, 1, Qt::DashLine));
@@ -163,10 +131,10 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             else if (primerpunto && !segundopunto)
             {
 
-                segundopunto = true;                
+                segundopunto = true;
                 ACLine = new QGraphicsLineItem;
                 ACLine->setPen(QPen(Qt::gray, 1, Qt::DashLine));
-                ACLine->setPos(P1);                
+                ACLine->setPos(P1);
                 this->addItem(ACLine);
             }
         }
@@ -180,9 +148,9 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             rectToDraw=nullptr;
             sceneMode = NoMode;
         }
-        break;
+        break;*/
 
-    case DrawEllipse://¡¡¡no funciona!!!
+    /*case DrawEllipse://¡¡¡no funciona!!!
 
         if(!ellipseToDraw)
         {
@@ -223,9 +191,9 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             else if (primerpunto && segundopunto && !tercerpunto && !cuartopunto)
             {
                 tercerpunto = true;
-                /*rectForEllipse =  new QGraphicsRectItem;
-                rectForEllipse->setRotation(ABLine->line().angle());
-                this->addItem(rectForEllipse);*/
+                //rectForEllipse =  new QGraphicsRectItem;
+                //rectForEllipse->setRotation(ABLine->line().angle());
+                //this->addItem(rectForEllipse);
                 qDebug()<<"anguloAB"<<ABLine->line().angle()<<"anguloBC"<<BCLine->line().angle();
             }
             else
@@ -242,9 +210,9 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             segundopunto = false;
             tercerpunto = false;
         }
-        break;
+        break;*/
 
-    case DrawRadiusCircle:
+    /*case DrawRadiusCircle:
 
         if(!circleToDraw)
         {
@@ -256,25 +224,21 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             RadiusLine->setPos(origCircle);
             this->addItem(circleToDraw);
             circleToDraw->setPen(QPen(Qt::green, 3, Qt::SolidLine));
-<<<<<<< HEAD
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
-=======
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
         }
         else
         {
             rectToDraw->setRect(0,0, event->scenePos().x() - origPoint.x(), event->scenePos().y() - origPoint.y());
             rectToDraw=nullptr;
         }
-<<<<<<< HEAD
-        break;
+        break;*/
 
     case Draw3PointsRect:
-        if (!rectToDraw)
+        qDebug()<<"Rectangulo a partir de 3 puntos";
+        /*if (!rectToDraw)
         {
             if (!primerpunto && !segundopunto)
             {
-                primerpunto=true;                
+                primerpunto=true;
                 P1 = event->scenePos();
                 ABLine = new QGraphicsLineItem;
                 ABLine->setPen(QPen(Qt::gray, 1, Qt::DashLine));
@@ -284,10 +248,10 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             else if (primerpunto && !segundopunto)
             {
 
-                segundopunto = true;                
+                segundopunto = true;
                 ACLine = new QGraphicsLineItem;
                 ACLine->setPen(QPen(Qt::gray, 1, Qt::DashLine));
-                ACLine->setPos(P1);                
+                ACLine->setPos(P1);
                 this->addItem(ACLine);
             }
         }
@@ -300,12 +264,12 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             segundopunto=false;
             rectToDraw=nullptr;
             sceneMode = NoMode;
-        }
+        }*/
         break;
 
     case DrawEllipse:
-
-        if(!ellipseToDraw)
+        qDebug()<<"Dibujar elipse";
+        /*if(!ellipseToDraw)
         {
             if (!primerpunto && !segundopunto)
             {
@@ -337,11 +301,12 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             rectToDraw = nullptr;
             ellipseToDraw = nullptr;
             sceneMode = NoMode;
-        }
+        }*/
         break;
 
-    case DrawRadiusCircle:      
-        if (!mycircle)
+    case DrawRadiusCircle:
+        qDebug()<<"Circulo a partir del radio";
+        /*if (!mycircle)
         {
             mycircle =  new EXORadiusCircle(event->scenePos());
             this->addItem(mycircle);
@@ -351,12 +316,25 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             mycircle->finish();
             mycircle = nullptr;
         }
-=======
-        origCircle = event->scenePos();
-<<<<<<< HEAD
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
-=======
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
+        origCircle = event->scenePos();*/
+        if(!circleToDraw)
+        {
+            origCircle = event->scenePos();
+            circleToDraw = new QGraphicsEllipseItem;
+            RadiusLine = new QGraphicsLineItem;
+            RadiusLine->setParentItem(circleToDraw);
+            RadiusLine->setPen(QPen(Qt::gray, 1, Qt::DashLine));
+            RadiusLine->setPos(origCircle);
+            this->addItem(circleToDraw);
+            circleToDraw->setPen(QPen(Qt::green, 3, Qt::SolidLine));
+            qDebug()<<"Holaaa";
+        }
+        else
+        {
+            qDebug()<<"Adiosss";
+            //rectToDraw->setRect(0,0, event->scenePos().x() - origPoint.x(), event->scenePos().y() - origPoint.y());
+            rectToDraw=nullptr;
+        }
         break;
 
     case DrawDiameterCircle:
@@ -427,20 +405,13 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
     default:
         QGraphicsScene::mousePressEvent(event);
+        break;
     }
 }
 
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-    //Cruceta->mover(event->scenePos());
-=======
     Cruceta->mover(event->scenePos());
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
-=======
-    Cruceta->mover(event->scenePos());
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     if(sceneMode == DrawLine)
     {
         if (lineToDraw)
@@ -451,11 +422,6 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         }
     }
     else if(sceneMode == DrawRect)
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     {
         if (rectToDraw)
         {
@@ -478,7 +444,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             qreal IncrementoY=ABLine->line().dy()-ACLine->line().dy();
             BC = sqrt(pow(IncrementoX,2)+pow(IncrementoY,2));
             qreal ss = (ABLine->line().length()+ACLine->line().length()+BC)/2;
-            qreal altura = 2/ABLine->line().length()*sqrt(ss*(ss-BC)*(ss-ABLine->line().length())*(ss-ACLine->line().length()));            
+            qreal altura = 2/ABLine->line().length()*sqrt(ss*(ss-BC)*(ss-ABLine->line().length())*(ss-ACLine->line().length()));
             if (!rectToDraw)
             {
                 rectToDraw = new QGraphicsRectItem;
@@ -503,7 +469,6 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         }
     }
     else if(sceneMode == DrawRadiusCircle)
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     {
         if (rectToDraw)
         {
@@ -526,7 +491,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             qreal IncrementoY=ABLine->line().dy()-ACLine->line().dy();
             BC = sqrt(pow(IncrementoX,2)+pow(IncrementoY,2));
             qreal ss = (ABLine->line().length()+ACLine->line().length()+BC)/2;
-            qreal altura = 2/ABLine->line().length()*sqrt(ss*(ss-BC)*(ss-ABLine->line().length())*(ss-ACLine->line().length()));            
+            qreal altura = 2/ABLine->line().length()*sqrt(ss*(ss-BC)*(ss-ABLine->line().length())*(ss-ACLine->line().length()));
             if (!rectToDraw)
             {
                 rectToDraw = new QGraphicsRectItem;
@@ -551,7 +516,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         }
     }
     else if(sceneMode == DrawRadiusCircle)
-    {       
+    {
         if (mycircle)
         {
             mycircle->changeSize(event->scenePos());
@@ -594,8 +559,6 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 
     else if(sceneMode == DrawEllipse)
     {
-<<<<<<< HEAD
-<<<<<<< HEAD
         if (primerpunto && !segundopunto)
         {
             ABLine->setLine(0,0,event->scenePos().x() - P1.x(), event->scenePos().y() - P1.y());
@@ -637,7 +600,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                 }
             }
             qDebug()<<ACLine->line().angle();
-        }       
+        }
     }
     if (itemAt(event->scenePos(),QTransform()))
     {
@@ -659,9 +622,6 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             }
         }
         QGraphicsScene::mouseMoveEvent(event);
-=======
-=======
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
         if (primerpunto && !segundopunto && !tercerpunto)
         {
             ABLine->setLine(P1.x(),P1.y(),event->scenePos().x(),event->scenePos().y());
@@ -708,10 +668,6 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                 //rectForEllipse->setRotation(-90);
             }
         }
-<<<<<<< HEAD
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
-=======
->>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     }
     else
         QGraphicsScene::mouseMoveEvent(event);
