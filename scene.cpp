@@ -12,10 +12,16 @@ Scene::Scene(const QRectF & sceneRect, QObject * parent) : QGraphicsScene(parent
     rectForEllipse=nullptr;
     circleToDraw = nullptr;
 <<<<<<< HEAD
+<<<<<<< HEAD
     mycircle = nullptr;
     ellipseToDraw = nullptr;
     //Cruceta =  new Cursor(sceneRect);
     //this->addItem(Cruceta);
+=======
+    ellipseToDraw = nullptr;
+    Cruceta =  new Cursor(sceneRect);
+    this->addItem(Cruceta);
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
 =======
     ellipseToDraw = nullptr;
     Cruceta =  new Cursor(sceneRect);
@@ -41,7 +47,11 @@ void Scene::setMode(Mode mode)
         makeItemsControllable(true);
         vMode = QGraphicsView::RubberBandDrag;
 <<<<<<< HEAD
+<<<<<<< HEAD
         //Cruceta->setMode(false);
+=======
+        Cruceta->setMode(false);
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
 =======
         Cruceta->setMode(false);
 >>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
@@ -51,7 +61,11 @@ void Scene::setMode(Mode mode)
         makeItemsControllable(false);
         vMode = QGraphicsView::NoDrag;
 <<<<<<< HEAD
+<<<<<<< HEAD
         //Cruceta->setMode(true);
+=======
+        Cruceta->setMode(true);
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
 =======
         Cruceta->setMode(true);
 >>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
@@ -110,6 +124,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
         if (!rectToDraw)
 <<<<<<< HEAD
+<<<<<<< HEAD
         {
             origPoint = event->scenePos();
             rectToDraw = new QGraphicsRectItem;
@@ -117,6 +132,8 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             rectToDraw->setPen(QPen(Qt::white, 2, Qt::SolidLine));
             rectToDraw->setPos(origPoint);
 =======
+=======
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
         {
             origPoint = event->scenePos();
             rectToDraw = new QGraphicsRectItem;
@@ -239,6 +256,9 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             RadiusLine->setPos(origCircle);
             this->addItem(circleToDraw);
             circleToDraw->setPen(QPen(Qt::green, 3, Qt::SolidLine));
+<<<<<<< HEAD
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
+=======
 >>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
         }
         else
@@ -333,6 +353,9 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
         }
 =======
         origCircle = event->scenePos();
+<<<<<<< HEAD
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
+=======
 >>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
         break;
 
@@ -410,7 +433,11 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
     //Cruceta->mover(event->scenePos());
+=======
+    Cruceta->mover(event->scenePos());
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
 =======
     Cruceta->mover(event->scenePos());
 >>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
@@ -425,7 +452,10 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     }
     else if(sceneMode == DrawRect)
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     {
         if (rectToDraw)
         {
@@ -565,6 +595,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
     else if(sceneMode == DrawEllipse)
     {
 <<<<<<< HEAD
+<<<<<<< HEAD
         if (primerpunto && !segundopunto)
         {
             ABLine->setLine(0,0,event->scenePos().x() - P1.x(), event->scenePos().y() - P1.y());
@@ -629,6 +660,8 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
         }
         QGraphicsScene::mouseMoveEvent(event);
 =======
+=======
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
         if (primerpunto && !segundopunto && !tercerpunto)
         {
             ABLine->setLine(P1.x(),P1.y(),event->scenePos().x(),event->scenePos().y());
@@ -675,6 +708,9 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                 //rectForEllipse->setRotation(-90);
             }
         }
+<<<<<<< HEAD
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
+=======
 >>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     }
     else

@@ -14,8 +14,12 @@
 
 #include "cursor.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 //#include "circle.h"
 #include "exoradiuscircle.h"
+=======
+#include "circle.h"
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
 =======
 #include "circle.h"
 >>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
@@ -48,8 +52,11 @@ private:
     QGraphicsRectItem* rectToDraw;
     QGraphicsRectItem* rectForEllipse;
 <<<<<<< HEAD
+<<<<<<< HEAD
     QGraphicsLineItem* DiameterLine;    
 =======
+=======
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     QGraphicsLineItem* DiameterLine;
     QGraphicsLineItem* RadiusLine;
 >>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
@@ -61,7 +68,10 @@ private:
     QGraphicsEllipseItem* circleToDraw;
     QGraphicsEllipseItem* ellipseToDraw;
 <<<<<<< HEAD
+<<<<<<< HEAD
     EXORadiusCircle* mycircle;
+=======
+>>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
 =======
 >>>>>>> 0b6a00ddb75af76847c98083e2adf0d6e4be75d3
     void makeItemsControllable(bool areControllable);
