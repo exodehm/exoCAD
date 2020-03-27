@@ -306,7 +306,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
 
     case DrawRadiusCircle:
         qDebug()<<"Circulo a partir del radio";
-        /*if (!mycircle)
+        if (!mycircle)
         {
             mycircle =  new EXORadiusCircle(event->scenePos());
             this->addItem(mycircle);
@@ -316,8 +316,8 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             mycircle->finish();
             mycircle = nullptr;
         }
-        origCircle = event->scenePos();*/
-        if(!circleToDraw)
+        origCircle = event->scenePos();
+        /*if(!circleToDraw)
         {
             origCircle = event->scenePos();
             circleToDraw = new QGraphicsEllipseItem;
@@ -334,7 +334,7 @@ void Scene::mousePressEvent(QGraphicsSceneMouseEvent *event)
             qDebug()<<"Adiosss";
             //rectToDraw->setRect(0,0, event->scenePos().x() - origPoint.x(), event->scenePos().y() - origPoint.y());
             rectToDraw=nullptr;
-        }
+        }*/
         break;
 
     case DrawDiameterCircle:
@@ -468,7 +468,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
             qDebug()<<ACLine->line().angle();
         }
     }
-    else if(sceneMode == DrawRadiusCircle)
+    /*else if(sceneMode == DrawRadiusCircle)
     {
         if (rectToDraw)
         {
@@ -476,7 +476,7 @@ void Scene::mouseMoveEvent(QGraphicsSceneMouseEvent *event)
                                 event->scenePos().x() - origPoint.x(),
                                 event->scenePos().y() - origPoint.y());
         }
-    }
+    }*/
     else if(sceneMode == Draw3PointsRect)
     {
         if (primerpunto && !segundopunto)
